@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         //タグを文字列に変換
         String num = String.valueOf(v.getTag());
         //文字列をintへ変換する
-        temp = Integer.parseInt(num);
+        temp = temp * 10 + Integer.parseInt(num);
         //TextViewにnumの値を反映させる
         resultText.setText(String.valueOf(temp));
     }
