@@ -74,5 +74,7 @@ public class MainActivity extends AppCompatActivity {
             default:
                 break;
         }
+        //sumの値をresultTextに反映させる
+        resultText.setText(String.valueOf(sum));
     }
 }
