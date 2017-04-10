@@ -77,4 +77,15 @@ public class MainActivity extends AppCompatActivity {
         //sumの値をresultTextに反映させる
         resultText.setText(String.valueOf(sum));
     }
+
+    //Cを押した時の処理
+    public void clearClick(View v) {
+        //値の初期化
+        a = 0;
+        b = 0;
+        temp = 0;
+        sum = 0;
+        //sumの値をresultTextに反映させる
+        resultText.setText(String.valueOf(sum));
+    }
 }

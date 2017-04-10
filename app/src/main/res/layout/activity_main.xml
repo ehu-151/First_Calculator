@@ -57,8 +57,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:tag="3"
                 android:onClick="markClick"
+                android:tag="3"
                 android:text="÷"
                 android:textSize="40dp" />
 
@@ -101,9 +101,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:onClick="markClick"
                 android:tag="2"
                 android:text="×"
-                android:onClick="markClick"
                 android:textSize="40dp" />
 
         </LinearLayout>
@@ -145,8 +145,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:tag="1"
                 android:onClick="markClick"
+                android:tag="1"
                 android:text="-"
                 android:textSize="40dp" />
 
@@ -162,6 +162,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:onClick="clearClick"
                 android:text="C"
                 android:textSize="40dp" />
 
@@ -177,16 +178,16 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="="
                 android:onClick="equalClick"
+                android:text="="
                 android:textSize="40dp" />
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:tag="0"
                 android:onClick="markClick"
+                android:tag="0"
                 android:text="+"
                 android:textSize="40dp" />
 
