@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
     //計算結果
     int sum;
     //記号を判断する
-    int mark_Check = 0;
+    int markCheck = 0;
 
     //電卓の計算結果のTextView
     TextView resultText;
@@ -30,9 +30,9 @@ public class MainActivity extends AppCompatActivity {
     //数字を押した時の処理
     public void numClick(View v) {
         //タグを文字列に変換
-        String num = String.valueOf(v.getTag());
+        String numString = String.valueOf(v.getTag());
         //文字列をintへ変換する
-        temp = temp * 10 + Integer.parseInt(num);
+        temp = temp * 10 + Integer.parseInt(numString);
         //TextViewにnumの値を反映させる
         resultText.setText(String.valueOf(temp));
     }
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         String num = String.valueOf(v.getTag());
         //文字列をintへ返還させる
         //0:足し算 1:引き算 2:掛け算 3:割り算
-        mark_Check = Integer.parseInt(num);
+        markCheck = Integer.parseInt(num);
         //tempの値をaに代入する
         a = temp;
         //tempの初期化
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         temp = 0;
 
         //mark_Checkに対応した四則演算をさせる
-        switch (mark_Check) {
+        switch (markCheck) {
             case 0:
                 sum = a + b;
                 break;
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         b = 0;
         temp = 0;
         sum = 0;
+
         //sumの値をresultTextに反映させる
         resultText.setText(String.valueOf(sum));
     }
