@@ -71,7 +71,9 @@ public class MainActivity extends AppCompatActivity {
                 sum = a * b;
                 break;
             case 3:
-                sum = a / b;
+                if (b != 0) {
+                    sum = a / b;
+                }
                 break;
             default:
                 break;
