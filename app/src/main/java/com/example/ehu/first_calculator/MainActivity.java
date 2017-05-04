@@ -29,12 +29,14 @@ public class MainActivity extends AppCompatActivity {
 
     //数字を押した時の処理
     public void numClick(View v) {
-        //タグを文字列に変換
-        String numString = String.valueOf(v.getTag());
-        //文字列をintへ変換する
-        temp = temp * 10 + Integer.parseInt(numString);
-        //TextViewにnumの値を反映させる
-        resultText.setText(String.valueOf(temp));
+        if (resultText.length() < 9) {
+            //タグを文字列に変換
+            String numString = String.valueOf(v.getTag());
+            //文字列をintへ変換する
+            temp = temp * 10 + Integer.parseInt(numString);
+            //TextViewにnumの値を反映させる
+            resultText.setText(String.valueOf(temp));
+        }
     }
 
     //記号を押した時の処理
