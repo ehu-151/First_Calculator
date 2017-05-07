@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
     //a+b, a-bなど
     float a = 0, b = 0;
     //計算結果
-    float sum;
+    float sum = 0;
     //記号を判断する
     int markCheck = 0;
 
@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         //関連付け
         resultText = (TextView) findViewById(R.id.resultText);
     }
-
 
 
     //記号を押した時の処理
@@ -94,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         b = 0;
         temp = 0;
         sum = 0;
+        markCheck = 0;
 
         //小数点のフラグを初期化
         isPointNum = false;
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         if (isPointNum == false) {
             //小数点をつける
             result = result + ".";
-            //小数点をつけたフラグ
+            //小数点をつけたのでフラグを立てる
             isPointNum = true;
             //TextViewにnumの値を反映させる
             resultText.setText(result);
