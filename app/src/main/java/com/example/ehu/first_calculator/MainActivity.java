@@ -9,19 +9,17 @@ import java.math.BigDecimal;
 
 public class MainActivity extends AppCompatActivity {
     //一時保存
-    BigDecimal temp = new BigDecimal("0");
+    BigDecimal temp = new BigDecimal(0);
     //a+b, a-bなど
-    String a = "0", b = "0";
+    BigDecimal a = new BigDecimal(0), b = new BigDecimal(0);
     //計算結果
-    String sum;
+    BigDecimal sum;
     //記号を判断する
     int markCheck = 0;
 
     //桁を保存する変数
     int chara = 0;
 
-    //resultViewに表示する変数
-    String result = "";
     //小数点フラグ
     boolean isPointNum = false;
     //小数入力時に入力値の位をずらすための
@@ -48,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
             String numString = String.valueOf(v.getTag());
             BigDecimal bdNumString = new BigDecimal(numString);
             if (isPointNum == false) {
-
                 temp=temp.multiply(new BigDecimal(10)).add(bdNumString);
             }
 //            else {
@@ -67,75 +64,72 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-//    //記号を押した時の処理
-//    public void markClick(View v) {
-//        //タグを文字列に変換
-//        String num = String.valueOf(v.getTag());
-//        //文字列をintへ返還させる
-//        //0:足し算 1:引き算 2:掛け算 3:割り算
-//        markCheck = Integer.parseInt(num);
-//        //tempの値をaに代入する
-//        a = temp;
-//        //tempの初期化
-//        temp = "0";
-//
-//        //resultの初期化
-//        result = "";
-//        //小数点のフラグを初期化
-//        isPointNum = false;
-//        //pointCntの初期化
-//        pointCnt = 10;
-//    }
+    //記号を押した時の処理
+    public void markClick(View v) {
+        //タグを文字列に変換
+        String num = String.valueOf(v.getTag());
+        //文字列をintへ返還させる
+        //0:足し算 1:引き算 2:掛け算 3:割り算
+        markCheck = Integer.parseInt(num);
+        //tempの値をaに代入する
+        a = temp;
+        //tempの初期化
+        temp = new BigDecimal(0);
 
-//    //=を押した時の処理
-//    public void equalClick(View v) {
-//        //tempの値をbに代入する
-//        b = temp;
-//        //tempの初期化
-//        temp = "0";
-//
-//        //小数点のフラグを初期化
-//        isPointNum = false;
-//
-//        //mark_Checkに対応した四則演算をさせる
-//        switch (markCheck) {
-//            case 0:
-//                sum = a + b;
-//                break;
-//            case 1:
-//                sum = a - b;
-//                break;
-//            case 2:
-//                sum = a * b;
-//                break;
-//            case 3:
-//                if (b != 0) {
-//                    sum = a / b;
-//                }
-//                break;
-//            default:
-//                break;
-//        }
-//        //sumの値をresultTextに反映させる
-//        resultText.setText(conFormat(String.valueOf(sum)));
-//    }
-//
-//    //Cを押した時の処理
-//    public void clearClick(View v) {
-//        //値の初期化
-//        a = 0;
-//        b = 0;
-//        temp = 0;
-//        sum = 0;
-//
-//        //小数点のフラグを初期化
-//        isPointNum = false;
-//        //pointCntの初期化
-//        pointCnt = 10;
-//        //resultTextに反映させる
-//        result = "";
-//        resultText.setText("0");
-//    }
+        //小数点のフラグを初期化
+        isPointNum = false;
+        //pointCntの初期化
+        pointCnt = 10;
+    }
+
+    //=を押した時の処理
+    public void equalClick(View v) {
+        //tempの値をbに代入する
+        b = temp;
+        //tempの初期化
+        temp = new BigDecimal(0);
+
+        //小数点のフラグを初期化
+        isPointNum = false;
+
+        //mark_Checkに対応した四則演算をさせる
+        switch (markCheck) {
+            case 0:
+                sum = a.add(b);
+                break;
+            case 1:
+                sum = a.subtract(b);
+                break;
+            case 2:
+                sum = a.multiply(b);
+                break;
+            case 3:
+                if (b.toString() != "0") {
+                    sum = a.divide(b);
+                }
+                break;
+            default:
+                break;
+        }
+        //sumの値をresultTextに反映させる
+        resultText.setText(sum.toString());
+    }
+
+    //Cを押した時の処理
+    public void clearClick(View v) {
+        //値の初期化
+        a = new BigDecimal(0);
+        b = new BigDecimal(0);
+        temp = new BigDecimal(0);
+        sum = new BigDecimal(0);
+
+        //小数点のフラグを初期化
+        isPointNum = false;
+        //pointCntの初期化
+        pointCnt = 10;
+        //resultTextに反映させる
+        resultText.setText("0");
+    }
 //
 //    //小数点メソッド
 //    public void pointNum(View v) {
