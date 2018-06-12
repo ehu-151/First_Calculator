@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 public class MainActivity extends AppCompatActivity {
     //一時保存
-    String temp = "0";
+    BigDecimal temp = new BigDecimal("0");
     //a+b, a-bなど
     String a = "0", b = "0";
     //計算結果
@@ -46,11 +46,10 @@ public class MainActivity extends AppCompatActivity {
             chara++;
             //タグを文字列に変換
             String numString = String.valueOf(v.getTag());
-            BigDecimal bd1 = new BigDecimal(numString);
-            BigDecimal bd2 = new BigDecimal(temp);
+            BigDecimal bdNumString = new BigDecimal(numString);
             if (isPointNum == false) {
 
-                bd2=bd2.multiply(new BigDecimal(10)).add(bd1);
+                temp=temp.multiply(new BigDecimal(10)).add(bdNumString);
             }
 //            else {
 //                pointDivideNum = pointDivideNum / 10;
@@ -64,29 +63,29 @@ public class MainActivity extends AppCompatActivity {
 //            }else{
 //                resultText.setText(String.valueOf(temp));
 //            }
-            resultText.setText(bd2.toString());
+            resultText.setText(temp.toString());
         }
     }
 
-    //記号を押した時の処理
-    public void markClick(View v) {
-        //タグを文字列に変換
-        String num = String.valueOf(v.getTag());
-        //文字列をintへ返還させる
-        //0:足し算 1:引き算 2:掛け算 3:割り算
-        markCheck = Integer.parseInt(num);
-        //tempの値をaに代入する
-        a = temp;
-        //tempの初期化
-        temp = "0";
-
-        //resultの初期化
-        result = "";
-        //小数点のフラグを初期化
-        isPointNum = false;
-        //pointCntの初期化
-        pointCnt = 10;
-    }
+//    //記号を押した時の処理
+//    public void markClick(View v) {
+//        //タグを文字列に変換
+//        String num = String.valueOf(v.getTag());
+//        //文字列をintへ返還させる
+//        //0:足し算 1:引き算 2:掛け算 3:割り算
+//        markCheck = Integer.parseInt(num);
+//        //tempの値をaに代入する
+//        a = temp;
+//        //tempの初期化
+//        temp = "0";
+//
+//        //resultの初期化
+//        result = "";
+//        //小数点のフラグを初期化
+//        isPointNum = false;
+//        //pointCntの初期化
+//        pointCnt = 10;
+//    }
 
 //    //=を押した時の処理
 //    public void equalClick(View v) {
