@@ -27,6 +27,22 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/button2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="clearClick"
+                android:text="C"
+                android:textSize="40dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -162,17 +178,17 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:onClick="clearClick"
-                android:text="C"
+                android:onClick="numClick"
+                android:tag="0"
+                android:text="0"
                 android:textSize="40dp" />
 
             <Button
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:tag="0"
-                android:onClick="numClick"
-                android:text="0"
+                android:onClick="pointNum"
+                android:text="."
                 android:textSize="40dp" />
 
             <Button
@@ -191,6 +207,7 @@
                 android:tag="0"
                 android:text="+"
                 android:textSize="40dp" />
+
 
         </LinearLayout>
     </LinearLayout>
