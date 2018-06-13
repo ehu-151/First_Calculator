@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
     //一時保存
@@ -22,13 +23,19 @@ public class MainActivity extends AppCompatActivity {
 
     //小数点フラグ
     boolean isPointNum = false;
-    //小数入力時に入力値の位をずらすための
-    double pointCnt = 10;
 
     //電卓の計算結果のTextView
     TextView resultText;
-    double pointDivideNum = 1;
 
+    //押した数字が小数になる時、その数を10^nで割ります。
+    //例：電卓画面が「23.」の時、「7」を押す。pointDivideNumを10で割り、「7」とかけます。
+    //その数を電卓画面の数字を足し合わせ「23.7」にする。
+    //numClick()を参照
+    int pointDivideNum = 1;
+
+    //画面上に表示するフォーマットを指定します。
+    //「23.03」の「0」を押した時の表示を可能にします。
+    DecimalFormat format = new DecimalFormat("#.#");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,12 +53,23 @@ public class MainActivity extends AppCompatActivity {
             String numString = String.valueOf(v.getTag());
             BigDecimal bdNumString = new BigDecimal(numString);
             if (isPointNum == false) {
-                temp=temp.multiply(new BigDecimal(10)).add(bdNumString);
+                temp = temp.multiply(new BigDecimal(10)).add(bdNumString);
+            } else {
+                //指定小数点以下の計算だけ
+                BigDecimal decimal=bdNumString.divide(new BigDecimal(1/(Math.pow(10,-pointDivideNum))));
+
+                //フォーマットを指定します。
+                format.setMaximumFractionDigits(pointDivideNum);
+                format.setMinimumFractionDigits(pointDivideNum);
+                //tempと指定小数点以下の足し算
+                temp = temp.add(decimal);
+
+                //formatを決める
+                //format.format(temp)はString型が返ってくるのでBigDecimal1で型を生成、代入
+                temp = new BigDecimal(format.format(temp));
+
+                pointDivideNum++;
             }
-//            else {
-//                pointDivideNum = pointDivideNum / 10;
-//                temp = temp + temp * pointDivideNum;
-//            }
 
 
 //            //TextViewにnumの値を反映させる
@@ -78,8 +96,9 @@ public class MainActivity extends AppCompatActivity {
 
         //小数点のフラグを初期化
         isPointNum = false;
-        //pointCntの初期化
-        pointCnt = 10;
+
+        //pointDivideNumを初期化
+        pointDivideNum = 1;
     }
 
     //=を押した時の処理
@@ -125,24 +144,25 @@ public class MainActivity extends AppCompatActivity {
 
         //小数点のフラグを初期化
         isPointNum = false;
-        //pointCntの初期化
-        pointCnt = 10;
+
+        //pointDivideNumを初期化
+        pointDivideNum = 1;
+
         //resultTextに反映させる
         resultText.setText("0");
     }
-//
-//    //小数点メソッド
-//    public void pointNum(View v) {
-//        if (isPointNum == false) {
-//            //小数点をつける
-//            result = String.valueOf((int) temp) + ".";
-//            //小数点をつけたフラグ
-//            isPointNum = true;
-//            //TextViewにnumの値を反映させる
-//            resultText.setText(result);
-//        }
-//
-//    }
+
+    //小数点メソッド
+    public void pointNum(View v) {
+        if (!isPointNum) {
+            //小数点をつけたフラグ
+            isPointNum = true;
+
+            //TextViewにnumの値を反映させる
+            resultText.setText(resultText.getText().toString() + ".");
+        }
+
+    }
 //
 //    //「.0」を削除するメソッド
 //    public String conFormat(String stSum) {
