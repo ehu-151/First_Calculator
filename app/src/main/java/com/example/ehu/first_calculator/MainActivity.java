@@ -10,9 +10,9 @@ import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity {
     //一時保存
-    BigDecimal temp = new BigDecimal(0);
+    BigDecimal temp = new BigDecimal("0");
     //a+b, a-bなど
-    BigDecimal a = new BigDecimal(0), b = new BigDecimal(0);
+    BigDecimal a = new BigDecimal("0"), b = new BigDecimal("0");
     //計算結果
     BigDecimal sum;
     //記号を判断する
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     //画面上に表示するフォーマットを指定します。
     //「23.03」の「0」を押した時の表示を可能にします。
     DecimalFormat format = new DecimalFormat("#.#");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,10 +54,10 @@ public class MainActivity extends AppCompatActivity {
             String numString = String.valueOf(v.getTag());
             BigDecimal bdNumString = new BigDecimal(numString);
             if (isPointNum == false) {
-                temp = temp.multiply(new BigDecimal(10)).add(bdNumString);
+                temp = temp.multiply(new BigDecimal("10")).add(bdNumString);
             } else {
                 //指定小数点以下の計算だけ
-                BigDecimal decimal=bdNumString.divide(new BigDecimal(1/(Math.pow(10,-pointDivideNum))));
+                BigDecimal decimal = bdNumString.divide(new BigDecimal(1 / (Math.pow(10, -pointDivideNum))));
 
                 //フォーマットを指定します。
                 format.setMaximumFractionDigits(pointDivideNum);
@@ -71,13 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 pointDivideNum++;
             }
 
-
-//            //TextViewにnumの値を反映させる
-//            if((int)temp - temp == 0){
-//                resultText.setText(String.valueOf((int)temp));
-//            }else{
-//                resultText.setText(String.valueOf(temp));
-//            }
+            //TextViewにnumの値を反映させる
             resultText.setText(temp.toString());
         }
     }
@@ -92,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         //tempの値をaに代入する
         a = temp;
         //tempの初期化
-        temp = new BigDecimal(0);
+        temp = new BigDecimal("0");
 
         //小数点のフラグを初期化
         isPointNum = false;
@@ -106,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         //tempの値をbに代入する
         b = temp;
         //tempの初期化
-        temp = new BigDecimal(0);
+        temp = new BigDecimal("0");
 
         //小数点のフラグを初期化
         isPointNum = false;
@@ -137,10 +132,10 @@ public class MainActivity extends AppCompatActivity {
     //Cを押した時の処理
     public void clearClick(View v) {
         //値の初期化
-        a = new BigDecimal(0);
-        b = new BigDecimal(0);
-        temp = new BigDecimal(0);
-        sum = new BigDecimal(0);
+        a = new BigDecimal("0");
+        b = new BigDecimal("0");
+        temp = new BigDecimal("0");
+        sum = new BigDecimal("0");
 
         //小数点のフラグを初期化
         isPointNum = false;
@@ -152,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         resultText.setText("0");
     }
 
-    //小数点メソッド
+    //小数点を押した時の処理
     public void pointNum(View v) {
         if (!isPointNum) {
             //小数点をつけたフラグ
@@ -161,14 +156,5 @@ public class MainActivity extends AppCompatActivity {
             //TextViewにnumの値を反映させる
             resultText.setText(resultText.getText().toString() + ".");
         }
-
     }
-//
-//    //「.0」を削除するメソッド
-//    public String conFormat(String stSum) {
-//        if (stSum.endsWith(".0") == true) {
-//            stSum = stSum.substring(0, stSum.length() - 2);
-//        }
-//        return stSum;
-//    }
 }
